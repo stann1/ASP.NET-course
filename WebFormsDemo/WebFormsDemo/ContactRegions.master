@@ -1,0 +1,4 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ContactRegions.master.cs" Inherits="WebFormsDemo.ContactRegions" %>
+<asp:Content ID="ContentContactRegions" ContentPlaceHolderID="MainContent" runat="server">
+    <h1>Nested page</h1>
+</asp:Content>
