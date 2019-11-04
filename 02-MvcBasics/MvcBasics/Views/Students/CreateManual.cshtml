@@ -1,0 +1,22 @@
+﻿@model Student
+@{
+    ViewData["Title"] = "Add student";
+    var createdStudent = ViewData["created"] as Student;
+}
+
+<h1>@ViewData["Title"]</h1>
+@if(createdStudent != null)
+{
+    <div>
+        <h3>Created</h3>
+        <p>Student with id: @createdStudent.Id and Name: @createdStudent.Name</p>
+    </div>
+}
+    <form action="/students/createstudent" method="post">
+        Name: <input type="text" name="name" value="" asp-for="Name" />
+        @*@Html.TextBoxFor(item => Model.Name)*@
+        Age: <input type="text" name="age" value="" asp-for="Age" />
+        @*@Html.TextBoxFor(item => Model.Age)*@
+        <input type="submit" value="Save" />
+    </form>
+

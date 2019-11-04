@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MvcBasics.Data;
+using MvcBasics.Helpers;
 
 namespace MvcBasics
 {
@@ -33,6 +35,15 @@ namespace MvcBasics
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            var itemManager = new EntryManager();
+            var loggingTool = new LoggingTool();
+            var reportingTool = new ReportingTool();
+
+            itemManager.OnStudentCreated += loggingTool.HandleItemCreated;
+            itemManager.OnStudentCreated += reportingTool.HandleItemCreated;
+
+            services.AddSingleton<IEntryManager>(itemManager);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

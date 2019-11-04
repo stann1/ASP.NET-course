@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Student>
+@{
+    ViewData["Title"] = "Students";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>List all students: (option 1)</p>
+<ul>
+    @foreach (var student in Model)
+    {
+        <li><span>Name: @student.Name</span><span> Age: @student.Age</span></li>
+    }
+</ul>
