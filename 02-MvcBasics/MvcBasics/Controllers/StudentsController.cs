@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MvcBasics.Data;
 using MvcBasics.Helpers;
-using MvcBasics.Models;
+using DataLayer.Models;
 
 namespace MvcBasics.Controllers
 {
@@ -56,6 +56,13 @@ namespace MvcBasics.Controllers
 
             return View("Create", model);
             
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Student studentToEdit = Students.Find(s => s.Id == id);
+            return View(studentToEdit);
         }
     }
 }

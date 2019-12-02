@@ -33,6 +33,8 @@ namespace MvcBasics
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //services.AddDbContext<SchoolContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

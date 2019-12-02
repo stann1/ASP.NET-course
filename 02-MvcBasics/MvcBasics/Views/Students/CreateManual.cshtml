@@ -1,4 +1,4 @@
-﻿@model Student
+﻿@model DataLayer.Models.Student
 @{
     ViewData["Title"] = "Add student";
     var createdStudent = ViewData["created"] as Student;
@@ -14,9 +14,9 @@
 }
     <form action="/students/createstudent" method="post">
         Name: <input type="text" name="name" value="" asp-for="Name" />
-        @*@Html.TextBoxFor(item => Model.Name)*@
+        @Html.TextBoxFor(item => Model.Name)
         Age: <input type="text" name="age" value="" asp-for="Age" />
-        @*@Html.TextBoxFor(item => Model.Age)*@
+        @Html.TextBoxFor(item => Model.Age)
         <input type="submit" value="Save" />
     </form>
 
