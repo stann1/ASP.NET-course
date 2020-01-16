@@ -1,28 +1,31 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace _04_MvcWithEF.Models
 {
     public partial class SchoolDBContext : DbContext
     {
+        private readonly IConfiguration configuration;
+
         public SchoolDBContext()
         {
         }
 
-        public SchoolDBContext(DbContextOptions<SchoolDBContext> options)
+        public SchoolDBContext(DbContextOptions<SchoolDBContext> options, IConfiguration configuration)
             : base(options)
         {
+            this.configuration = configuration;
         }
 
-        public virtual DbSet<Students> Students { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=SchoolDB;Trusted_Connection=True;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer(configuration["DefaultConnection"]);
             }
         }
 
@@ -30,7 +33,7 @@ namespace _04_MvcWithEF.Models
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
-            modelBuilder.Entity<Students>(entity =>
+            modelBuilder.Entity<Student>(entity =>
             {
                 entity.Property(e => e.Name)
                     .IsRequired()

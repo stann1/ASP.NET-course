@@ -27,14 +27,14 @@ namespace _04_MvcWithEF.Controllers
 
         public IActionResult ListStudents()
         {
-            var students = Context.Students.ToList();
+            var students = Context.Student.ToList();
             return View(students);
         }
 
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var result = Context.Students.FirstOrDefault(s => s.Id == id);
+            var result = Context.Student.FirstOrDefault(s => s.Id == id);
             return View(result);
         }
 
